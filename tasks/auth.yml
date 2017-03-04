@@ -1,0 +1,43 @@
+---
+
+- name: create auth dirs
+  file:
+    path: '/home/{{ dest_user }}/{{ item }}'
+    mode: 0700
+    owner: '{{ dest_user }}'
+    group: '{{ dest_user }}'
+    state: directory
+  with_items:
+    - '.ssh'
+    - '.gnupg' 
+
+- name: copy keys
+  copy:
+    src: '{{ item }}'
+    dest: '/home/{{ dest_user }}/.ssh/{{ item }}'
+    mode: 0600
+    owner: '{{ dest_user }}'
+    group: '{{ dest_user }}'
+  with_items:
+    - 'id_rsa'
+    - 'id_rsa.pub'
+     
+- name: copy gpg
+  copy:
+    src: '{{ item }}'
+    dest: '/home/{{ dest_user }}/.gnupg/{{ item }}'
+    mode: 0600
+    owner: '{{ dest_user }}'
+    group: '{{ dest_user }}'
+  with_items:
+    - 'pgp-public.pub'
+    - 'pgp-secret.asc'
+
+- name: import gpg keys
+  command: '/usr/bin/gpg --import /home/{{ dest_user }}/.gnupg/{{ item }}'
+  with_items:
+    - 'pgp-public.pub'
+    - 'pgp-secret.asc'
+  become: yes
+  become_user: '{{ dest_user }}'
+  ignore_errors: yes  

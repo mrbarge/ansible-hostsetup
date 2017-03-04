@@ -1,0 +1,5 @@
+---
+
+dotfiles_repo: https://github.com/mrbarge/dotfiles.git
+vundle_repo: https://github.com/gmarik/vundle.git
+

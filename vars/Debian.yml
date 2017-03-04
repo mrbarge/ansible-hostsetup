@@ -1,0 +1,5 @@
+pkg_reqs:
+   - 'tmux'
+   - 'git'
+   - 'python'
+   - 'zsh'

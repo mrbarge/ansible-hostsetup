@@ -1,0 +1,9 @@
+pkg_reqs:
+   - 'libselinux-python'
+   - 'tmux'
+   - 'git'
+   - 'python-virtualenv'
+   - 'python34'
+   - 'python34-pip'
+   - 'zsh'
+   - 'gnupg'

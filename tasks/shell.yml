@@ -1,0 +1,41 @@
+---
+
+- name: clone dotfiles
+  git:
+    repo: '{{ dotfiles_repo }}'
+    dest: '/home/{{ dest_user }}/dotfiles'
+  become: yes
+  become_user: '{{ dest_user }}'
+
+- name: setup dotfiles
+  command: '/home/{{ dest_user }}/dotfiles/install.sh'
+  become: yes
+  become_user: '{{ dest_user }}'
+
+- name: setup vim config dir
+  file:
+    path: '/home/{{ dest_user }}/.vim/bundle'
+    recurse: yes
+    owner: '{{ dest_user }}'
+    group: '{{ dest_user }}'
+    mode: 0700
+    state: directory
+
+- name: check if vundle clone exists
+  stat:
+    path: '/home/{{ dest_user }}/.vim/bundle' 
+  register: check_vundle
+
+- name: clone vundle
+  git:
+    repo: '{{ vundle_repo }}'
+    dest: '/home/{{ dest_user }}/.vim/bundle/vundle'
+  become: yes
+  become_user: '{{ dest_user }}'
+  when: not check_vundle.stat.exists
+
+- name: install all vim bundles in vimrc
+  command: '/usr/bin/vim +BundleInstall +qall'
+  become: yes
+  become_user: '{{ dest_user }}'
+

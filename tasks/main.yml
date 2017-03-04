@@ -1,0 +1,6 @@
+---
+
+- include: host-setup.yml
+  tags: host-setup
+
+
