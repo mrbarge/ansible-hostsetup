@@ -7,3 +7,5 @@ pkg_reqs:
    - 'python34-pip'
    - 'zsh'
    - 'gnupg'
+   - 'ctags'
+   - 'python-ctags'
