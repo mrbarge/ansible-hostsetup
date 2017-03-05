@@ -1,7 +1,7 @@
 host-setup
 ==========
 
-Home shell environment setup.
+An ansible role to perform my typical dev shell environment setup.
 
 ## Setup
 
