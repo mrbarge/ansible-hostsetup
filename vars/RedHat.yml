@@ -1,4 +1,5 @@
 pkg_reqs:
+   - 'vim'
    - 'libselinux-python'
    - 'tmux'
    - 'git'
@@ -8,4 +9,3 @@ pkg_reqs:
    - 'zsh'
    - 'gnupg'
    - 'ctags'
-   - 'python-ctags'
