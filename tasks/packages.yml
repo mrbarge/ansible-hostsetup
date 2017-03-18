@@ -3,6 +3,10 @@
 - name: Add the OS specific varibles
   include_vars: "../vars/{{ ansible_os_family }}.yml"
 
+- name: Update all existing packages
+  yum: name='*' state=latest
+  when: ansible_os_family == 'RedHat'
+
 - name: Subscribe to EPEL for Redhat derivatives
   yum: name=epel-release state=installed
   when: ansible_os_family == 'RedHat'
