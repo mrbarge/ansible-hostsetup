@@ -23,7 +23,7 @@
 
 - name: check if vundle clone exists
   stat:
-    path: '/home/{{ dest_user }}/.vim/bundle' 
+    path: '/home/{{ dest_user }}/.vim/bundle/vundle' 
   register: check_vundle
 
 - name: clone vundle
